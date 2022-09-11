@@ -9,19 +9,44 @@ import math
 
 
 def get_data(category):
-    params = {
-        'categoryId': {category},
-        'offset':
-        '0',
-        'limit':
-        '24',
-        'filterParams': [
-            'WyJza2lka2EiLCIiLCJkYSJd',
-            'WyJ0b2xrby12LW5hbGljaGlpIiwiIiwiZGEiXQ==',
-        ],
-        'doTranslit':
-        'true',
-    }
+    s = requests.Session()
+    if category == '118':
+        params = {
+            'categoryId': {category},
+            'offset':
+            '0',
+            'limit':
+            '24',
+            'filterParams': [
+                'WyJza2lka2EiLCIiLCJkYSJd',
+                'WyJ0b2xrby12LW5hbGljaGlpIiwiIiwiZGEiXQ==',
+            ],
+            'doTranslit':
+            'true',
+        }
+        response = s.get('https://www.mvideo.ru/bff/products/listing',
+                         params=params,
+                         cookies=cookies,
+                         headers=headers).json()
+    elif category == '195':
+        params = {
+            'categoryId':
+            '195',
+            'offset':
+            '0',
+            'limit':
+            '24',
+            'filterParams': [
+                'WyJza2lka2EiLCIiLCJkYSJd',
+                'WyJ0b2xrby12LW5hbGljaGlpIiwiIiwiZGEiXQ==',
+            ],
+            'doTranslit':
+            'true',
+        }
+        response = s.get('https://www.mvideo.ru/bff/products/listing',
+                         params=params,
+                         cookies=tablet_cookies,
+                         headers=tablet_headers).json()
 
     if not os.path.exists('data'):
         os.mkdir('data')
